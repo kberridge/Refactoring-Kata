@@ -4,31 +4,31 @@ namespace Algorithm
 {
     public class Finder
     {
-        private readonly List<Person> _p;
+        private readonly List<Person> _people;
 
         public Finder(List<Person> p)
         {
-            _p = p;
+            _people = p;
         }
 
         public F Find(DateMatch ft)
         {
             var tr = new List<F>();
 
-            for(var i = 0; i < _p.Count - 1; i++)
+            for(var i = 0; i < _people.Count - 1; i++)
             {
-                for(var j = i + 1; j < _p.Count; j++)
+                for(var j = i + 1; j < _people.Count; j++)
                 {
                     var r = new F();
-                    if(_p[i].BirthDate < _p[j].BirthDate)
+                    if(_people[i].BirthDate < _people[j].BirthDate)
                     {
-                        r.Person1 = _p[i];
-                        r.Person2 = _p[j];
+                        r.Person1 = _people[i];
+                        r.Person2 = _people[j];
                     }
                     else
                     {
-                        r.Person1 = _p[j];
-                        r.Person2 = _p[i];
+                        r.Person1 = _people[j];
+                        r.Person2 = _people[i];
                     }
                     r.BirthDateDifference = r.Person2.BirthDate - r.Person1.BirthDate;
                     tr.Add(r);
