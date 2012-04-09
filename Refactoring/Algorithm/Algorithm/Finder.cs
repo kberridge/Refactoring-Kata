@@ -11,7 +11,7 @@ namespace Algorithm
             _p = p;
         }
 
-        public F Find(FT ft)
+        public F Find(DateMatch ft)
         {
             var tr = new List<F>();
 
@@ -45,14 +45,14 @@ namespace Algorithm
             {
                 switch(ft)
                 {
-                    case FT.Closest:
+                    case DateMatch.Closest:
                         if(result.D < answer.D)
                         {
                             answer = result;
                         }
                         break;
 
-                    case FT.Furthest:
+                    case DateMatch.Furthest:
                         if(result.D > answer.D)
                         {
                             answer = result;
