@@ -45,14 +45,14 @@ namespace Algorithm
             {
                 switch(ft)
                 {
-                    case FT.One:
+                    case FT.Closest:
                         if(result.D < answer.D)
                         {
                             answer = result;
                         }
                         break;
 
-                    case FT.Two:
+                    case FT.Furthest:
                         if(result.D > answer.D)
                         {
                             answer = result;

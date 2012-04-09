@@ -2,7 +2,7 @@
 {
     public enum FT
     {
-        One,
-        Two
+        Closest,
+        Furthest
     }
 }
