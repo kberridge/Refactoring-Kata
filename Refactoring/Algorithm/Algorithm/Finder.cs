@@ -13,6 +13,8 @@ namespace Algorithm
 
         public FinderResult Find(DateMatch ft)
         {
+            if (_people.Count < 2) return new FinderResult();
+
             var tr = new List<FinderResult>();
 
             for(var i = 0; i < _people.Count - 1; i++)
@@ -33,11 +35,6 @@ namespace Algorithm
                     r.BirthDateDifference = r.Older.BirthDate - r.Younger.BirthDate;
                     tr.Add(r);
                 }
-            }
-
-            if(tr.Count < 1)
-            {
-                return new FinderResult();
             }
 
             FinderResult answer = tr[0];
