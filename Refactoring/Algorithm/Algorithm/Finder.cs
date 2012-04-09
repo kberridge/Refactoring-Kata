@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Algorithm
 {
@@ -16,29 +17,10 @@ namespace Algorithm
             if (_people.Count < 2) return new FinderResult();
 
             var allDateDiffs = GetAllDateDiffs();
-
-            FinderResult answer = allDateDiffs[0];
-            foreach (var result in allDateDiffs)
-            {
-                switch(matchMethod)
-                {
-                    case DateMatch.Closest:
-                        if(result.BirthDateDifference < answer.BirthDateDifference)
-                        {
-                            answer = result;
-                        }
-                        break;
-
-                    case DateMatch.Furthest:
-                        if(result.BirthDateDifference > answer.BirthDateDifference)
-                        {
-                            answer = result;
-                        }
-                        break;
-                }
-            }
-
-            return answer;
+            if (matchMethod == DateMatch.Closest)
+              return allDateDiffs.OrderBy(d => d.BirthDateDifference).First();
+            else
+              return allDateDiffs.OrderByDescending(d => d.BirthDateDifference).First();
         }
 
         List<FinderResult> GetAllDateDiffs()
