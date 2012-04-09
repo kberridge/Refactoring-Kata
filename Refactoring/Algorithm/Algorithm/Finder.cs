@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Algorithm
 {
@@ -12,15 +13,21 @@ namespace Algorithm
             _people = p;
         }
 
-        public FinderResult Find(DateMatch matchMethod)
+        public FinderResult FindBornClosest()
+        {
+          return Find(diffs => diffs.OrderBy(d => d.BirthDateDifference));
+        }
+
+        public FinderResult FindBornFurthest()
+        {
+          return Find(diffs => diffs.OrderByDescending(d => d.BirthDateDifference));
+        }
+
+        FinderResult Find(Func<IEnumerable<FinderResult>, IEnumerable<FinderResult>> order)
         {
           if (_people.Count < 2) return FinderResult.None;
-
-            var allDateDiffs = GetAllDateDiffs();
-            if (matchMethod == DateMatch.Closest)
-              return allDateDiffs.OrderBy(d => d.BirthDateDifference).First();
-            else
-              return allDateDiffs.OrderByDescending(d => d.BirthDateDifference).First();
+          var allDateDiffs = GetAllDateDiffs();
+          return order(allDateDiffs).First();
         }
 
         IEnumerable<FinderResult> GetAllDateDiffs()
