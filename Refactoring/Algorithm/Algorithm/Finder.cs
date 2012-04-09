@@ -15,6 +15,34 @@ namespace Algorithm
         {
             if (_people.Count < 2) return new FinderResult();
 
+            var allDateDiffs = GetAllDateDiffs();
+
+            FinderResult answer = allDateDiffs[0];
+            foreach (var result in allDateDiffs)
+            {
+                switch(matchMethod)
+                {
+                    case DateMatch.Closest:
+                        if(result.BirthDateDifference < answer.BirthDateDifference)
+                        {
+                            answer = result;
+                        }
+                        break;
+
+                    case DateMatch.Furthest:
+                        if(result.BirthDateDifference > answer.BirthDateDifference)
+                        {
+                            answer = result;
+                        }
+                        break;
+                }
+            }
+
+            return answer;
+        }
+
+        List<FinderResult> GetAllDateDiffs()
+        {
             var tr = new List<FinderResult>();
 
             for(var i = 0; i < _people.Count - 1; i++)
@@ -37,28 +65,7 @@ namespace Algorithm
                 }
             }
 
-            FinderResult answer = tr[0];
-            foreach(var result in tr)
-            {
-                switch(matchMethod)
-                {
-                    case DateMatch.Closest:
-                        if(result.BirthDateDifference < answer.BirthDateDifference)
-                        {
-                            answer = result;
-                        }
-                        break;
-
-                    case DateMatch.Furthest:
-                        if(result.BirthDateDifference > answer.BirthDateDifference)
-                        {
-                            answer = result;
-                        }
-                        break;
-                }
-            }
-
-            return answer;
+            return tr;
         }
     }
 }
