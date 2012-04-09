@@ -22,15 +22,15 @@ namespace Algorithm
                     var r = new F();
                     if(_people[i].BirthDate < _people[j].BirthDate)
                     {
-                        r.Person1 = _people[i];
-                        r.Person2 = _people[j];
+                        r.Younger = _people[i];
+                        r.Older = _people[j];
                     }
                     else
                     {
-                        r.Person1 = _people[j];
-                        r.Person2 = _people[i];
+                        r.Younger = _people[j];
+                        r.Older = _people[i];
                     }
-                    r.BirthDateDifference = r.Person2.BirthDate - r.Person1.BirthDate;
+                    r.BirthDateDifference = r.Older.BirthDate - r.Younger.BirthDate;
                     tr.Add(r);
                 }
             }
