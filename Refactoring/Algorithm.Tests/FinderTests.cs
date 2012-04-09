@@ -14,8 +14,8 @@ namespace Algorithm.Test
 
             var result = finder.Find(FT.Closest);
 
-            Assert.Null(result.P1);
-            Assert.Null(result.P2);
+            Assert.Null(result.Person1);
+            Assert.Null(result.Person2);
         }
 
         [Fact]
@@ -26,8 +26,8 @@ namespace Algorithm.Test
 
             var result = finder.Find(FT.Closest);
 
-            Assert.Null(result.P1);
-            Assert.Null(result.P2);
+            Assert.Null(result.Person1);
+            Assert.Null(result.Person2);
         }
 
         [Fact]
@@ -38,8 +38,8 @@ namespace Algorithm.Test
 
             var result = finder.Find(FT.Closest);
 
-            Assert.Same(sue, result.P1);
-            Assert.Same(greg, result.P2);
+            Assert.Same(sue, result.Person1);
+            Assert.Same(greg, result.Person2);
         }
 
         [Fact]
@@ -50,8 +50,8 @@ namespace Algorithm.Test
 
             var result = finder.Find(FT.Furthest);
 
-            Assert.Same(greg, result.P1);
-            Assert.Same(mike, result.P2);
+            Assert.Same(greg, result.Person1);
+            Assert.Same(mike, result.Person2);
         }
 
         [Fact]
@@ -62,8 +62,8 @@ namespace Algorithm.Test
 
             var result = finder.Find(FT.Furthest);
 
-            Assert.Same(sue, result.P1);
-            Assert.Same(sarah, result.P2);
+            Assert.Same(sue, result.Person1);
+            Assert.Same(sarah, result.Person2);
         }
 
         [Fact]
@@ -74,8 +74,8 @@ namespace Algorithm.Test
 
             var result = finder.Find(FT.Closest);
 
-            Assert.Same(sue, result.P1);
-            Assert.Same(greg, result.P2);
+            Assert.Same(sue, result.Person1);
+            Assert.Same(greg, result.Person2);
         }
 
         Person sue = new Person() {Name = "Sue", BirthDate = new DateTime(1950, 1, 1)};
