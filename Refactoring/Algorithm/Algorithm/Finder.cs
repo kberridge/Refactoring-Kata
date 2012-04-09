@@ -30,7 +30,7 @@ namespace Algorithm
                         r.Person1 = _p[j];
                         r.Person2 = _p[i];
                     }
-                    r.D = r.Person2.BirthDate - r.Person1.BirthDate;
+                    r.BirthDateDifference = r.Person2.BirthDate - r.Person1.BirthDate;
                     tr.Add(r);
                 }
             }
@@ -46,14 +46,14 @@ namespace Algorithm
                 switch(ft)
                 {
                     case DateMatch.Closest:
-                        if(result.D < answer.D)
+                        if(result.BirthDateDifference < answer.BirthDateDifference)
                         {
                             answer = result;
                         }
                         break;
 
                     case DateMatch.Furthest:
-                        if(result.D > answer.D)
+                        if(result.BirthDateDifference > answer.BirthDateDifference)
                         {
                             answer = result;
                         }
