@@ -11,7 +11,7 @@ namespace Algorithm
             _people = p;
         }
 
-        public FinderResult Find(DateMatch ft)
+        public FinderResult Find(DateMatch matchMethod)
         {
             if (_people.Count < 2) return new FinderResult();
 
@@ -40,7 +40,7 @@ namespace Algorithm
             FinderResult answer = tr[0];
             foreach(var result in tr)
             {
-                switch(ft)
+                switch(matchMethod)
                 {
                     case DateMatch.Closest:
                         if(result.BirthDateDifference < answer.BirthDateDifference)
