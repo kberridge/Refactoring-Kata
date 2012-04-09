@@ -11,15 +11,15 @@ namespace Algorithm
             _people = p;
         }
 
-        public F Find(DateMatch ft)
+        public FinderResult Find(DateMatch ft)
         {
-            var tr = new List<F>();
+            var tr = new List<FinderResult>();
 
             for(var i = 0; i < _people.Count - 1; i++)
             {
                 for(var j = i + 1; j < _people.Count; j++)
                 {
-                    var r = new F();
+                    var r = new FinderResult();
                     if(_people[i].BirthDate < _people[j].BirthDate)
                     {
                         r.Younger = _people[i];
@@ -37,10 +37,10 @@ namespace Algorithm
 
             if(tr.Count < 1)
             {
-                return new F();
+                return new FinderResult();
             }
 
-            F answer = tr[0];
+            FinderResult answer = tr[0];
             foreach(var result in tr)
             {
                 switch(ft)
