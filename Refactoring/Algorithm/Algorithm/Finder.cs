@@ -14,7 +14,7 @@ namespace Algorithm
 
         public FinderResult Find(DateMatch matchMethod)
         {
-            if (_people.Count < 2) return new FinderResult();
+          if (_people.Count < 2) return FinderResult.None;
 
             var allDateDiffs = GetAllDateDiffs();
             if (matchMethod == DateMatch.Closest)
@@ -23,31 +23,18 @@ namespace Algorithm
               return allDateDiffs.OrderByDescending(d => d.BirthDateDifference).First();
         }
 
-        List<FinderResult> GetAllDateDiffs()
+        IEnumerable<FinderResult> GetAllDateDiffs()
         {
-            var tr = new List<FinderResult>();
-
             for(var i = 0; i < _people.Count - 1; i++)
             {
                 for(var j = i + 1; j < _people.Count; j++)
                 {
-                    var r = new FinderResult();
-                    if(_people[i].BirthDate < _people[j].BirthDate)
-                    {
-                        r.Younger = _people[i];
-                        r.Older = _people[j];
-                    }
+                    if (_people[i].BirthDate < _people[j].BirthDate)
+                      yield return new FinderResult(_people[i], _people[j]);
                     else
-                    {
-                        r.Younger = _people[j];
-                        r.Older = _people[i];
-                    }
-                    r.BirthDateDifference = r.Older.BirthDate - r.Younger.BirthDate;
-                    tr.Add(r);
+                      yield return new FinderResult(_people[j], _people[i]);
                 }
             }
-
-            return tr;
         }
     }
 }
